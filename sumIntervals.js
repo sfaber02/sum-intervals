@@ -40,6 +40,15 @@ const sumIntervals = (arr) => {
          cArr.push(curr);
 
 
+// sumIntervals( [
+//     [1,5],
+//     [10, 20],
+//     [1, 6],
+//     [16, 19],
+//     [5, 11],
+//     [22-25],
+//     [23-36]
+//  ] );
 
 
       }else{ //if it's the last item add it to the new array, no comparison needed
@@ -64,12 +73,12 @@ const sumIntervals = (arr) => {
 
 
 sumIntervals( [
-    [1,5],
-    [10, 20],
-    [1, 6],
-    [16, 19],
-    [5, 11]
- ] );
+   [1,5],
+   [1,5],
+   [1,5]
+] );
+
+
 
 
 
