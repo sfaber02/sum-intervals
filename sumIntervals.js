@@ -1,9 +1,9 @@
 const sumIntervals = (arr) => {
 
    //sort array by first ele
-   arr.sort((a,b) => {return a[0] - b[0]});
+   arr.sort((a,b) => {return Number(a[0]) - Number(b[0])});
+   arr.forEach((e) => console.log(e));
    let cArr = []; //consilidated array of intervals
-   let c = 1; //test loop stopper
    //find the overlapping ranges and make a new array of consilidated ranges
    while (arr.length > 0){
       console.log (`arr = ${arr},`, c);
@@ -18,6 +18,8 @@ const sumIntervals = (arr) => {
                   if (curr[1] < arr[i][1]){ //if upper range exceeds upper range of curr set new upper range
                      curr[1] = arr[i][1]; 
                      arr.splice(i,1); //delete range out of array
+                  }else{
+                     arr.splice(i,1);
                   }
                }
             }
@@ -26,8 +28,7 @@ const sumIntervals = (arr) => {
       }else{ //if it's the last item add it to the new array, no comparison needed
          cArr.push(curr);
          arr.splice(0,1);
-      }
-      c++; 
+      } 
    }
    console.log (cArr);
    cArr.forEach((e) => console.log(e));
