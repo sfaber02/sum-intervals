@@ -2,36 +2,63 @@ const sumIntervals = (arr) => {
 
    //sort array by first ele
    arr.sort((a,b) => {return Number(a[0]) - Number(b[0])});
-   arr.forEach((e) => console.log(e));
+   //arr.forEach((e) => console.log(e));
    let cArr = []; //consilidated array of intervals
    //find the overlapping ranges and make a new array of consilidated ranges
+
+
    while (arr.length > 0){
-      console.log (`arr = ${arr},`, c);
       let curr = arr[0];
+      console.log (`arr = ${arr}, curr = ${curr}`);
+      console.log ('---------------Next while-------------------');
+      arr.splice(0,1);
       if (arr.length > 1){
-         for (let i = 1; i < arr.length; i++){
-            if (arr[i][0] > curr[1]){ //if current lower range exceeds upper range stop this loop 
+
+
+
+         while(true && arr.length > 0){
+            console.log (`inside for loop iteration   arr = ${arr}, curr = ${curr}`);
+            if (arr[0][0] > curr[1]){ //if current lower range exceeds upper range stop this loop
+               console.log (`hit the breaks ${arr[0][0]} > ${curr[1]}`);
                break;
             }else{
-               if (arr[i][0] >= curr[0] && arr[i][0] <= curr[1]){ //if lower range is within the range of curr
-                  console.log (`overlapping range found ${arr[i]} and ${curr}`);
-                  if (curr[1] < arr[i][1]){ //if upper range exceeds upper range of curr set new upper range
-                     curr[1] = arr[i][1]; 
-                     arr.splice(i,1); //delete range out of array
+               if (arr[0][0] >= curr[0] && arr[0][0] <= curr[1]){ //if lower range is within the range of curr
+                  if (arr[0][1] > curr[1]){ //if upper range exceeds upper range of curr set new upper range
+                     console.log (`overlapping range found ${curr} and ${arr[0]}`);
+                     curr[1] = arr[0][1];
+                     console.log (`new curr = ${curr}`); 
+                     arr.splice(0,1); //delete range out of array
                   }else{
-                     arr.splice(i,1);
+                     console.log (`found entirely inclusive range NUKING ${arr[0]}`);
+                     arr.splice(0,1);
                   }
                }
             }
+            console.log ('******NEXT FOR*****');
          }
+         console.log (`pushing ${curr} to new array`);
          cArr.push(curr);
+
+
+
+
       }else{ //if it's the last item add it to the new array, no comparison needed
          cArr.push(curr);
          arr.splice(0,1);
       } 
    }
-   console.log (cArr);
+
+
+
    cArr.forEach((e) => console.log(e));
+   let sum = 0
+   for (let e of cArr){
+      sum += e[1] - e[0];
+   }
+   console.log (sum);
+   return sum;
+
+
 }
 
 
