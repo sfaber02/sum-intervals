@@ -8,18 +8,18 @@ const sumIntervals = (arr) => {
 
 
    while (arr.length > 0){
-      let curr = arr[0];
-      console.log (`arr = ${arr}, curr = ${curr}`);
       console.log ('---------------Next while-------------------');
+      let curr = arr[0];
       arr.splice(0,1);
-      if (arr.length > 1){
+      console.log (`arr = ${arr}, curr = ${curr}`);
+      // if (arr.length > 1){
 
 
 
          while(true && arr.length > 0){
-            console.log (`inside for loop iteration   arr = ${arr}, curr = ${curr}`);
+            console.log (`inside search loop  arr = ${arr}, curr = ${curr}`);
             if (arr[0][0] > curr[1]){ //if current lower range exceeds upper range stop this loop
-               console.log (`hit the breaks ${arr[0][0]} > ${curr[1]}`);
+               console.log (`hit the breaks range outta range ${arr[0]} > ${curr}`);
                break;
             }else{
                if (arr[0][0] >= curr[0] && arr[0][0] <= curr[1]){ //if lower range is within the range of curr
@@ -34,31 +34,24 @@ const sumIntervals = (arr) => {
                   }
                }
             }
-            console.log ('******NEXT FOR*****');
+            console.log ('******NEXT SEARCH LOOP*****');
          }
+
+
          console.log (`pushing ${curr} to new array`);
          cArr.push(curr);
 
 
-// sumIntervals( [
-//     [1,5],
-//     [10, 20],
-//     [1, 6],
-//     [16, 19],
-//     [5, 11],
-//     [22-25],
-//     [23-36]
-//  ] );
-
-
-      }else{ //if it's the last item add it to the new array, no comparison needed
-         cArr.push(curr);
-         arr.splice(0,1);
-      } 
+         
+         
+      // }else{ //if it's the last item add it to the new array, no comparison needed
+      //    cArr.push(curr);
+      //    arr.splice(0,1);
+      // } 
    }
-
-
-
+   
+   
+   
    cArr.forEach((e) => console.log(e));
    let sum = 0
    for (let e of cArr){
@@ -66,11 +59,28 @@ const sumIntervals = (arr) => {
    }
    console.log (sum);
    return sum;
-
-
+   
+   
 }
 
+// sumIntervals( [
+//    [1,5],
+//    [10, 20],
+//    [1, 6],
+//    [16, 19],
+//    [5, 11]
+// ] );
 
+// sumIntervals( [
+//     [1,5],
+//     [10, 20],
+//     [36,42],
+//     [57, 96],
+//     [78, 97],
+//     [1, 6],
+//     [16, 19],
+//     [5, 11],
+//  ] );
 
 sumIntervals( [
    [1,5],
