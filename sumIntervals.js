@@ -10,6 +10,11 @@ const sumIntervals = (arr) => {
       let curr = arr[0];
       if (arr.length > 1){
          for (let i = 1; i < arr.length; i++){
+            if (arr[i][0] == curr[0] && arr[i][1] == curr[1]){
+               console.log (`found equal ranges!`)
+               arr.splice(i,1);
+               break;
+            }
             if (arr[i][0] > curr[1]){ //if current lower range exceeds upper range stop this loop 
                // cArr.push(curr);
                arr.splice(0,1);
@@ -26,9 +31,13 @@ const sumIntervals = (arr) => {
                }
             }
          }
-         cArr.push(curr);
+         if (!(cArr[cArr.length -1] == curr)){
+            cArr.push(curr);
+         }
       }else{ //if it's the last item add it to the new array, no comparison needed
-         cArr.push(curr);
+         if (!(cArr[cArr.length -1] == curr)){
+            cArr.push(curr);
+         }
          arr.splice(0,1);
       } 
    }
@@ -57,9 +66,9 @@ const sumIntervals = (arr) => {
 
 
 sumIntervals( [
-   [1,2],
-   [6, 10],
-   [11, 15]
+   [1,5],
+   [1,5],
+   [1,5]
 ] );
 
 
