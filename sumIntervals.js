@@ -1,8 +1,38 @@
 const sumIntervals = (arr) => {
-    
+
+   //sort array by first ele
+   arr.sort((a,b) => {return Number(a[0]) - Number(b[0])});
+   arr.forEach((e) => console.log(e));
+   let cArr = []; //consilidated array of intervals
+   //find the overlapping ranges and make a new array of consilidated ranges
+   while (arr.length > 0){
+      console.log (`arr = ${arr},`, c);
+      let curr = arr[0];
+      if (arr.length > 1){
+         for (let i = 1; i < arr.length; i++){
+            if (arr[i][0] > curr[1]){ //if current lower range exceeds upper range stop this loop 
+               break;
+            }else{
+               if (arr[i][0] >= curr[0] && arr[i][0] <= curr[1]){ //if lower range is within the range of curr
+                  console.log (`overlapping range found ${arr[i]} and ${curr}`);
+                  if (curr[1] < arr[i][1]){ //if upper range exceeds upper range of curr set new upper range
+                     curr[1] = arr[i][1]; 
+                     arr.splice(i,1); //delete range out of array
+                  }else{
+                     arr.splice(i,1);
+                  }
+               }
+            }
+         }
+         cArr.push(curr);
+      }else{ //if it's the last item add it to the new array, no comparison needed
+         cArr.push(curr);
+         arr.splice(0,1);
+      } 
+   }
+   console.log (cArr);
+   cArr.forEach((e) => console.log(e));
 }
-
-
 
 
 
@@ -16,8 +46,25 @@ sumIntervals( [
 
 
 
+
+
+
 /*
 
+sort array by first ele in each range
+
+do this until array is empty.{
+init var current range at first item in array
+compare to every other item and see if there are overlapping items
+   if you get to an item that starts at a greater range than the max current range stop the search for efficiencies sake
+if there are overlapping items adjust the range and delete appropriate ele out of array
+add current range to a new array and delete first ele out of array
+}
+
+sum all ranges in new array
+
+
+******************************************************
 
 Solutions
 Forks (28)
