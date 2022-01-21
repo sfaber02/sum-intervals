@@ -16,7 +16,7 @@ const sumIntervals = (arr) => {
 
 
 
-         while(true && arr.length > 0){
+         while(arr.length > 0){
             console.log (`inside search loop  arr = ${arr}, curr = ${curr}`);
             if (arr[0][0] > curr[1]){ //if current lower range exceeds upper range stop this loop
                console.log (`hit the breaks range outta range ${arr[0]} > ${curr}`);
@@ -51,7 +51,7 @@ const sumIntervals = (arr) => {
    }
    
    
-   
+   //display final consilidated array and then sum it together
    cArr.forEach((e) => console.log(e));
    let sum = 0
    for (let e of cArr){
@@ -63,24 +63,24 @@ const sumIntervals = (arr) => {
    
 }
 
-// sumIntervals( [
-//    [1,5],
-//    [10, 20],
-//    [1, 6],
-//    [16, 19],
-//    [5, 11]
-// ] );
+sumIntervals( [
+   [1,5],
+   [10, 20],
+   [1, 6],
+   [16, 19],
+   [5, 11]
+] );
 
-// sumIntervals( [
-//     [1,5],
-//     [10, 20],
-//     [36,42],
-//     [57, 96],
-//     [78, 97],
-//     [1, 6],
-//     [16, 19],
-//     [5, 11],
-//  ] );
+sumIntervals( [
+    [1,5],
+    [10, 20],
+    [36,42],
+    [57, 96],
+    [78, 97],
+    [1, 6],
+    [16, 19],
+    [5, 11],
+ ] );
 
 sumIntervals( [
    [1,5],
