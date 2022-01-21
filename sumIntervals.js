@@ -2,15 +2,17 @@ const sumIntervals = (arr) => {
 
    //sort array by first ele
    arr.sort((a,b) => {return Number(a[0]) - Number(b[0])});
-   arr.forEach((e) => console.log(e));
+   // arr.forEach((e) => console.log(e));
    let cArr = []; //consilidated array of intervals
    //find the overlapping ranges and make a new array of consilidated ranges
    while (arr.length > 0){
-      console.log (`arr = ${arr},`, c);
+      console.log (`arr = ${arr},`);
       let curr = arr[0];
       if (arr.length > 1){
          for (let i = 1; i < arr.length; i++){
             if (arr[i][0] > curr[1]){ //if current lower range exceeds upper range stop this loop 
+               // cArr.push(curr);
+               arr.splice(0,1);
                break;
             }else{
                if (arr[i][0] >= curr[0] && arr[i][0] <= curr[1]){ //if lower range is within the range of curr
@@ -30,20 +32,35 @@ const sumIntervals = (arr) => {
          arr.splice(0,1);
       } 
    }
-   console.log (cArr);
-   cArr.forEach((e) => console.log(e));
+   // cArr.forEach((e) => console.log(e));
+
+   //sum the ranges
+   let sum = 0
+   for (let e of cArr){
+      sum += e[1] - e[0];
+   }
+   console.log (sum);
+   return sum;
 }
 
 
 
-sumIntervals( [
-    [1,5],
-    [10, 20],
-    [1, 6],
-    [16, 19],
-    [5, 11]
- ] );
+// sumIntervals( [
+//     [1,5],
+//     [10, 20],
+//     [1, 6],
+//     [16, 19],
+//     [5, 11],
+//     [22-25],
+//     [23-36]
+//  ] );
 
+
+sumIntervals( [
+   [1,2],
+   [6, 10],
+   [11, 15]
+] );
 
 
 
